@@ -22,6 +22,7 @@ class WhitelistFactory extends Factory
             'discord_acc' => $username,
             'telegram_acc' => $username,
             'berachain_add' => $this->faker->randomAscii(),
+            'create_at' => $this->faker->dateTime()
         ];
     }
 }
