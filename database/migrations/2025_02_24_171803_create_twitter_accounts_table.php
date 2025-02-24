@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('whitelists', function (Blueprint $table) {
+        Schema::create('twitter_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string("x_acc");
-            $table->string("discord_acc");
-            $table->string("telegram_acc");
-            $table->string("berachain_add");
+            $table->integer("whitelist_id");
+            $table->string("username");
+            $table->string("public_name");
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('whitelists');
+        Schema::dropIfExists('twitter_accounts');
     }
 };

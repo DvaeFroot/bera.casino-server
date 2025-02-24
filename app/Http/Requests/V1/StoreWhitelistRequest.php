@@ -11,7 +11,9 @@ class StoreWhitelistRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = $this->user();
+
+        return $user != null && $user->tokenCan('create');
     }
 
     /**
@@ -22,20 +24,32 @@ class StoreWhitelistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'xAcc' => ['required'],
-            'discordAcc' => ['required'],
-            'telegramAcc' => ['required'],
-            'berachainAdd' => ['required'],
+            'berachainAdd'              => ['required', 'string'],
+            'twitterAcc.username'      => ['required', 'string'],
+            'twitterAcc.publicName'      => ['required', 'string'],
+            'discordAcc.username'      => ['required', 'string'],
+            'discordAcc.publicName'   => ['required', 'string'],
+            'telegramAcc.username'     => ['required', 'string'],
+            'telegramAcc.publicName'  => ['required', 'string'],
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'x_acc' => $this->xAcc,
-            'discord_acc' => $this->discordAcc,
-            'telegram_acc' => $this->telegramAcc,
-            'berachain_add' => $this->berachainAdd
+            'berachain_add' => $this->input('berachainAdd'),
+            'twitter_acc' => [
+                'username' => $this->input('twitterAcc.username'),
+                'public_name' => $this->input('twitterAcc.publicName'),
+            ],
+            'discord_acc' => [
+                'username'      => $this->input('discordAcc.username'),
+                'public_name'   => $this->input('discordAcc.publicName'),
+            ],
+            'telegram_acc' => [
+                'username'     => $this->input('telegramAcc.username'),
+                'public_name'  => $this->input('telegramAcc.publicName'),
+            ]
         ]);
     }
 }

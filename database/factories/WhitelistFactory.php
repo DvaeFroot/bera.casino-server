@@ -16,13 +16,8 @@ class WhitelistFactory extends Factory
      */
     public function definition(): array
     {
-        $username = $this->faker->userName();
         return [
-            'x_acc' => $username,
-            'discord_acc' => $username,
-            'telegram_acc' => $username,
             'berachain_add' => $this->faker->randomAscii(),
-            'create_at' => $this->faker->dateTime()
         ];
     }
 }

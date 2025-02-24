@@ -11,9 +11,21 @@ class Whitelist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'x_acc',
-        'discord_acc',
-        'telegram_acc',
         'berachain_add',
     ];
+
+    public function twitterAccounts()
+    {
+        return $this->hasOne(TwitterAccount::class);
+    }
+
+    public function discordAccounts()
+    {
+        return $this->hasOne(DiscordAccount::class);
+    }
+
+    public function telegramAccounts()
+    {
+        return $this->hasOne(TelegramAccount::class);
+    }
 }

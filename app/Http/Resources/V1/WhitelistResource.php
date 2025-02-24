@@ -16,10 +16,10 @@ class WhitelistResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'xAcc' => $this->x_acc,
-            'discordAcc' => $this->discord_acc,
-            'telegramAcc' => $this->telegram_acc,
-            'berachainAdd' => $this->berachain_add
+            'berachainAdd' => $this->berachain_add,
+            'twitterAcc' => new TwitterAccountResource($this->whenLoaded('twitterAccounts')),
+            'discordAcc' => new DiscordAccountResource($this->whenLoaded('discordAccounts')),
+            'telegramAcc' => new TelegramAccountResource($this->whenLoaded('telegramAccounts')),
         ];
     }
 }

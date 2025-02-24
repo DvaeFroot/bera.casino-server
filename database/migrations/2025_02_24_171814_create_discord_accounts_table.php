@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('whitelists', function (Blueprint $table) {
+        Schema::create('discord_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('berachain_add');
+            $table->integer("whitelist_id");
+            $table->string("username");
+            $table->string("public_name");
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('discord_accounts');
     }
 };

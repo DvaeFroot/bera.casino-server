@@ -14,6 +14,9 @@ class WhitelistSeeder extends Seeder
     {
         Whitelist::factory()
             ->count(10)
+            ->hasTwitterAccounts(1)
+            ->hasDiscordAccounts(1)
+            ->hasTelegramAccounts(1)
             ->create();
     }
 }
