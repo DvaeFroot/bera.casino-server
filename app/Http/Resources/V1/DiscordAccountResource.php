@@ -16,6 +16,7 @@ class DiscordAccountResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'discordId' => $this->discord_id,
             'username' => $this->username,
             'publicName' => $this->public_name
         ];

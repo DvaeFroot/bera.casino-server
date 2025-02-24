@@ -19,6 +19,7 @@ class DiscordAccountFactory extends Factory
     {
         return [
             'whitelist_id' => Whitelist::factory(),
+            'discord_id' => $this->faker->uuid(),
             'username' => $this->faker->userName(),
             'public_name' => $this->faker->userName(),
         ];

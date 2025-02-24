@@ -12,6 +12,7 @@ class DiscordAccount extends Model
 
     protected $fillable = [
         'whitelist_id',
+        'discord_id',
         'username',
         'public_name',
     ];

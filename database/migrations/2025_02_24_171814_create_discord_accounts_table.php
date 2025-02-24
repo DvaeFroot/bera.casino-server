@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('discord_accounts', function (Blueprint $table) {
             $table->id();
             $table->integer("whitelist_id");
+            $table->string("discord_id");
             $table->string("username");
             $table->string("public_name");
             $table->timestamps();

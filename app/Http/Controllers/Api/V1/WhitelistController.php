@@ -53,6 +53,7 @@ class WhitelistController extends Controller
                 DiscordAccount::create(
                     [
                         'whitelist_id' => $whitelist->id,
+                        'discord_id' => $discordAccountData['discord_id'],
                         'username' => $discordAccountData['username'],
                         'public_name' => $discordAccountData['public_name']
                     ],

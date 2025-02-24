@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\V1;
 
+use App\Rules\TwitterUsernameExists;
+use App\Rules\DiscordIdExists;
+use App\Rules\TelegramUsernameExists;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreWhitelistRequest extends FormRequest
@@ -25,30 +28,32 @@ class StoreWhitelistRequest extends FormRequest
     {
         return [
             'berachainAdd'              => ['required', 'string'],
-            'twitterAcc.username'      => ['required', 'string'],
-            'twitterAcc.publicName'      => ['required', 'string'],
-            'discordAcc.username'      => ['required', 'string'],
-            'discordAcc.publicName'   => ['required', 'string'],
-            'telegramAcc.username'     => ['required', 'string'],
-            'telegramAcc.publicName'  => ['required', 'string'],
+            'twitterAcc.username'       => ['required', 'string', new TwitterUsernameExists],
+            'twitterAcc.publicName'     => ['required', 'string'],
+            'discordAcc.discordId'      => ['required', 'string', new DiscordIdExists],
+            'discordAcc.username'       => ['required', 'string'],
+            'discordAcc.publicName'     => ['required', 'string'],
+            'telegramAcc.username'      => ['required', 'string', new TelegramUsernameExists],
+            'telegramAcc.publicName'    => ['required', 'string'],
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'berachain_add' => $this->input('berachainAdd'),
+            'berachain_add'     => $this->input('berachainAdd'),
             'twitter_acc' => [
-                'username' => $this->input('twitterAcc.username'),
-                'public_name' => $this->input('twitterAcc.publicName'),
+                'username'      => $this->input('twitterAcc.username'),
+                'public_name'   => $this->input('twitterAcc.publicName'),
             ],
             'discord_acc' => [
+                'discord_id'    => $this->input('discordAcc.discordId'),
                 'username'      => $this->input('discordAcc.username'),
                 'public_name'   => $this->input('discordAcc.publicName'),
             ],
             'telegram_acc' => [
-                'username'     => $this->input('telegramAcc.username'),
-                'public_name'  => $this->input('telegramAcc.publicName'),
+                'username'      => $this->input('telegramAcc.username'),
+                'public_name'   => $this->input('telegramAcc.publicName'),
             ]
         ]);
     }
