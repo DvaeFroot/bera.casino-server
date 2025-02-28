@@ -10,8 +10,8 @@ Route::get('/', function () {
 
 Route::get('/setup', function () {
     $credentials = [
-        'email' => 'ddjimenez555@gmail.com',
-        'password' => 'beracasino1@3',
+        'email' => env("MAIL_FROM_ADDRESS"),
+        'password' => env("MAIL_PASSWORD"),
     ];
 
     if (!Auth::attempt($credentials)) {
@@ -24,13 +24,9 @@ Route::get('/setup', function () {
         $user->save();
 
         $adminToken = $user->createToken('admin-token', ['create', 'update', 'delete']);
-        $updateToken = $user->createToken('update-token', ['create', 'update']);
-        $basicToken = $user->createToken('basic-token');
 
         return [
             'admin' => $adminToken->plainTextToken,
-            'updateToken' => $updateToken->plainTextToken,
-            'basicToken' => $basicToken->plainTextToken,
         ];
     }
 });
