@@ -15,11 +15,11 @@ class TwitterUsernameExists implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        try {
-            $domain = env('VALIDATION_API_DOMAIN');
-            Http::timeout(10)->get("$domain/api/twitter?username=$value");
-        } catch (\Exception $e) {
-            $fail("An unexpected error occured while validating the Twitter username. Twitter username most likely does not exist");
-        }
+        /*try {*/
+        /*    $domain = env('VALIDATION_API_DOMAIN');*/
+        /*    Http::timeout(10)->get("$domain/api/twitter?username=$value");*/
+        /*} catch (\Exception $e) {*/
+        /*    $fail("An unexpected error occured while validating the Twitter username. Twitter username most likely does not exist");*/
+        /*}*/
     }
 }
